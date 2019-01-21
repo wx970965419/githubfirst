@@ -1,0 +1,20 @@
+server:
+  port: 8020 
+eureka:
+  client:
+    register-with-eureka: true    #不会将自己的信息注册到eureka中
+    service-url:
+      #链接注册中心集群
+       defaultZone: http://localhost:7000/eureka
+  instance:
+    instance-id: consumer-user-8020                #定义微服务的名称
+    prefer-ip-address: true                        #是否显示IP和端口
+spring: 
+  application:          #定义服务名称   必须定义
+    name: consumer-user
+feign:
+  hystrix:
+    enabled: true                 #启动熔断器机制 !!!!!!!!!!!!!
+
+#说明:当服务端宕机机.由客户端中的配置返回数据,节省时间开销.
+      
